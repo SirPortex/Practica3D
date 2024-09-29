@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 
     private float time;
     private int points;
-    private KeyCode Esc = KeyCode.Escape;
     //public AudioClip SelectClip;
 
     public enum GameManagerVariables { TIME, POINTS };//para facilitar el codigo
