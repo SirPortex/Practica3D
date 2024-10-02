@@ -7,10 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance; //el game manager controla las variables del juego y es accesible a todos
 
     private float time;
-    private int points;
-    //public AudioClip SelectClip;
 
-    public enum GameManagerVariables { TIME, POINTS };//para facilitar el codigo
+    public enum GameManagerVariables { TIME };//para facilitar el codigo
 
     private void Awake()
     {
@@ -34,17 +32,5 @@ public class GameManager : MonoBehaviour
     public float GetTime()
     {
         return time;
-    }
-
-    // getter
-    public int GetPoints()
-    {
-        return points;
-    }
-
-    // setter
-    public void SetPoints(int value)
-    {
-        points = value;
     }
 }

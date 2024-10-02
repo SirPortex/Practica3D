@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using UnityEngine;
-//using static Points;
 
 [System.Serializable]
 struct PlayerData
@@ -14,7 +13,6 @@ struct PlayerData
     public string date;
 }
 
-
 public class SaveDataJSON : MonoBehaviour
 {
     public string fileName = "Save.json";
@@ -22,13 +20,12 @@ public class SaveDataJSON : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        fileName= Application.persistentDataPath +'\\'+fileName;
 
-        //Points point = GetComponent<Points>();
+        fileName = Application.persistentDataPath + '\\' + fileName;
+
+
         if (File.Exists(fileName)) //Si el archivo existe se guarda
         {
-            //Points point = GetComponent<Points>();
 
             StreamReader streamReader = new StreamReader(fileName);
 
@@ -39,8 +36,7 @@ public class SaveDataJSON : MonoBehaviour
                 PlayerData playerData = JsonUtility.FromJson<PlayerData>(streamReader.ReadToEnd()); // "FromJson" -> De JSON a objeto. Leemos todo de principio a fin. Te devuelve en formato JSON
                 transform.position = playerData.position;
                 point.coins = playerData.point;
-
-                //DateTime date = DateTime.Now;
+                DateTime date = DateTime.Now;
             }
             catch (System.Exception e)
             {
@@ -49,7 +45,6 @@ public class SaveDataJSON : MonoBehaviour
             }
             streamReader.Close();
         }
-        
     }
 
     // Update is called once per frame
@@ -60,7 +55,7 @@ public class SaveDataJSON : MonoBehaviour
         StreamWriter streamWritter = new StreamWriter(fileName);
         PlayerData playerData = new PlayerData(); //instancio el objeto que vamos a guardar
         playerData.position = transform.position; //rellenamos la info del objeto
-        playerData.point = point.coins;
+        playerData.point = point.coins;           
         playerData.date = DateTime.Now.ToString();
 
         string json = JsonUtility.ToJson(playerData); //"To.Json" -> recibe un objeto serializable y nos genera un string de ese objeto serializable.

@@ -21,9 +21,6 @@ public class UpdateText : MonoBehaviour
             case GameManager.GameManagerVariables.TIME:
                 textComponent.text = GameManager.instance.GetTime().ToString("0"); //el tostring para que devuelva solo 2 decimales en cadena
                 break;
-            case GameManager.GameManagerVariables.POINTS:
-                textComponent.text = "" + GameManager.instance.GetPoints();
-                break;
             default:
                 break;
         }

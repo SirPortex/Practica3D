@@ -8,7 +8,6 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//using static Points;
 
 public class SaveDataTXT : MonoBehaviour
 {
@@ -28,7 +27,6 @@ public class SaveDataTXT : MonoBehaviour
                 float y = float.Parse(streamReader.ReadLine());
                 float z = float.Parse(streamReader.ReadLine());
                 int c = int.Parse(streamReader.ReadLine());
-
                 string t = (streamReader.ReadLine());
 
                 streamReader.Close();
@@ -57,11 +55,6 @@ public class SaveDataTXT : MonoBehaviour
         streamWritter.WriteLine(transform.position.y);
         streamWritter.WriteLine(transform.position.z);
         streamWritter.WriteLine(point.coins);
-
-        //List<DateTime> fechas = new List<DateTime>();
-        //fechas.Add(DateTime.Now);
-        //streamWritter.Write(fechas);
-
         streamWritter.WriteLine(DateTime.Now);
 
         streamWritter.Close(); //IMPORTANTE !!! CERRAR
