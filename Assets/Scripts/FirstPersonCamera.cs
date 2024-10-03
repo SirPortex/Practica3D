@@ -22,15 +22,9 @@ public class FirstPersonCamera : MonoBehaviour
 
         mouseYRotation -= mouseY;
 
-        if (CameraLim < mouseYRotation || -CameraLim > mouseYRotation)
-        {
             mouseYRotation = Mathf.Clamp(mouseYRotation, -CameraLim, CameraLim);
-        }
-        else
-        {
+        
             transform.localEulerAngles = Vector3.right * mouseYRotation;
-        }
-
 
         playerTransform.Rotate(Vector3.up * mouseX); // es lo mismo que "new Vector3 (0, mousex, 0)" que esta en el script de CC
     }

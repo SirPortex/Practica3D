@@ -11,6 +11,7 @@ struct PlayerData
     public Vector3 position;
     public int point;
     public string date;
+    public List<string> hours;
 }
 
 public class SaveDataJSON : MonoBehaviour
@@ -36,7 +37,9 @@ public class SaveDataJSON : MonoBehaviour
                 PlayerData playerData = JsonUtility.FromJson<PlayerData>(streamReader.ReadToEnd()); // "FromJson" -> De JSON a objeto. Leemos todo de principio a fin. Te devuelve en formato JSON
                 transform.position = playerData.position;
                 point.coins = playerData.point;
-                DateTime date = DateTime.Now;
+                //DateTime date = DateTime.Now;
+                //GameManager.instance.SetScore();
+                GameManager.instance.SetHours(playerData.hours);
             }
             catch (System.Exception e)
             {
@@ -56,7 +59,13 @@ public class SaveDataJSON : MonoBehaviour
         PlayerData playerData = new PlayerData(); //instancio el objeto que vamos a guardar
         playerData.position = transform.position; //rellenamos la info del objeto
         playerData.point = point.coins;           
-        playerData.date = DateTime.Now.ToString();
+        //playerData.date = DateTime.Now.ToString();
+
+        List<string> hoursAux = GameManager.instance.GetHours();
+        hoursAux.Add(DateTime.Now.ToString("HH:mm:ss"));
+        playerData.hours = hoursAux;
+
+        //playerData.puntuation = GameManager.instance.GetScore();
 
         string json = JsonUtility.ToJson(playerData); //"To.Json" -> recibe un objeto serializable y nos genera un string de ese objeto serializable.
         streamWritter.WriteLine(json);

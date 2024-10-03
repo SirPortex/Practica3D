@@ -22,7 +22,7 @@ public class Points : MonoBehaviour
 
     public IEnumerator FadeOut() //Corrutina para empezar el fade out
     {
-        Color color = POINTS.color; // Se hace una variable de tipo color para poder modificar el color
+        Color color = POINTS.color; // Se hace una variable de tipo color para poder modificar el color del componente TMP_Text
         for (float alpha = 1.0f; alpha >= 0; alpha -= 0.01f)
         {
             color.a = alpha;
