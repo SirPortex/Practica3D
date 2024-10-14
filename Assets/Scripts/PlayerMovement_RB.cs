@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement_RB : MonoBehaviour
 {
-    public float speed, rotationSpeed, jumpForce, sphereRadius;//,gravityScale;
+    public float speed, runningSpeed, rotationSpeed, jumpForce, sphereRadius;//,gravityScale;
 
     public string groundName;
+
+    private Animator animator;
+
+    private Vector3 movementVector;
 
     private Rigidbody rb;
     private float x, z, mouseX; //input
@@ -16,6 +20,7 @@ public class PlayerMovement_RB : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         //gravityScale = -Mathf.Abs(gravityScale); //Valor Absoluto
 
@@ -35,6 +40,11 @@ public class PlayerMovement_RB : MonoBehaviour
         //jump
 
         RotatePlayer();
+    }
+
+    public Vector3 GetMovementVector()
+    {
+        return movementVector;
     }
 
     void RotatePlayer()
