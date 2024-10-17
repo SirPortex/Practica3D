@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: GuardState (S) - Enemy1
   m_EditorClassIdentifier: 
   stateParameters:
-  - actionValue: 1
-    action: {fileID: 11400000, guid: aa8ab6fbfa1aac54fbf906982649441a, type: 2}
+  - actionValues: 0101
+    actions:
+    - {fileID: 11400000, guid: aa8ab6fbfa1aac54fbf906982649441a, type: 2}
+    - {fileID: 11400000, guid: ad7e47c07e73be54980a272a229d0221, type: 2}
     nextState: {fileID: 11400000, guid: d114aa811a5c9c34f892b2e97c719d49, type: 2}
+    and: 1
   guardPoint: {x: 52.6, y: 62.44, z: 565.3}
