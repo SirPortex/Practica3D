@@ -4,13 +4,20 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
+public struct ActionParameters
+{
+    [Tooltip("Action that is gonna be executed")]
+    public Action action;
+    [Tooltip("Indicates if the action´s check must be true or false")]
+    public bool actionValue;
+}
+
+[System.Serializable]
 
 public struct StateParameters
 {
-    [Tooltip("Indicates if the action´s check must be true or false")]
-    public bool[] actionValues;
-    [Tooltip("Action that is gonna be executed")]
-    public Action[] actions;
+    [Tooltip("ActionParameters array")]
+    public ActionParameters[] actionParameters;
     [Tooltip("If the actions´s check equals acionValue, nextState is pushed")]
     public State nextState;
     [Tooltip("All actoins must be cheked if they are all true")]
@@ -33,10 +40,9 @@ public abstract class State : ScriptableObject
 
         foreach (StateParameters parameters in stateParameters)
         {
-            foreach(Action action in parameters.actions) // recorre toas las acciones
+            foreach(ActionParameters aP in parameters.actionParameters) // recorre toas las acciones
             {
-                Gizmos.color = Color.yellow;
-                action.DrawGizmos(owner);
+                aP.action.DrawGizmos(owner);
             }
         }
     }
@@ -46,9 +52,10 @@ public abstract class State : ScriptableObject
         for (int i = 0; i < stateParameters.Length; i++) // Recorremos el array de los parametros que tenemos en este for
         {
             bool allActionsTrue = true;
-            for (int j = 0; j < stateParameters[i].actions.Length; j++) // recorremos el array de las acciones que se tienen que repetir
+            for (int j = 0; j < stateParameters[i].actionParameters.Length; j++) // recorremos el array de las acciones que se tienen que repetir
             {
-                if (stateParameters[i].actions[j].Check(owner) == stateParameters[i].actionValues[j]) //si se cumplen todas las condiciones
+                ActionParameters actionParameter = stateParameters[i].actionParameters[j];
+                if (actionParameter.action.Check(owner) == actionParameter.actionValue) //si se cumplen todas las condiciones
                 {
                     if (!stateParameters[i].and)//si solo se tiene que cumplir una
                     {

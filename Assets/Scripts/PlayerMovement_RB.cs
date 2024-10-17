@@ -80,13 +80,13 @@ public class PlayerMovement_RB : MonoBehaviour
 
     private bool IsGrounded()
     {
-        RaycastHit[] colliders = Physics.SphereCastAll(new Vector3(transform.position.x,
-            transform.position.y - transform.localScale.y / 2, transform.position.z), sphereRadius, Vector3.up);
+        Collider[] colliders = Physics.OverlapSphere(new Vector3(transform.position.x,
+            transform.position.y - transform.localScale.y/ 2, transform.position.z), sphereRadius);
 
         for (int i = 0; i < colliders.Length; i++) //recorremos elemento a elemento.
         {
             // y comprobamos si el elemento es suelo o no.
-            if (colliders[i].collider.gameObject.layer == LayerMask.NameToLayer(groundName)) //Recorre cada elemento del array para ver si tocamos suelo
+            if (colliders[i].gameObject.layer == LayerMask.NameToLayer(groundName)) //Recorre cada elemento del array para ver si tocamos suelo
             {
                 return true;
             }

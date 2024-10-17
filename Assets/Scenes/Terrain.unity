@@ -141,9 +141,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  runningSpeed: 0
   rotationSpeed: 150
-  jumpForce: 5
-  sphereRadius: 0.4
+  jumpForce: 500
+  sphereRadius: 0.82
   groundName: Ground
 --- !u!54 &21215081
 Rigidbody:
@@ -547,7 +548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd51ba59dd047a345af2cd3347a8b531, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 61.46
+      value: 65.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bd51ba59dd047a345af2cd3347a8b531, type: 3}
       propertyPath: m_LocalPosition.z
@@ -750,7 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe3e4c89881a514a9d3a3c744b496c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: {fileID: 11400000, guid: f06774202cb566b4c805c6edd0df1079, type: 2}
+  initialState: {fileID: 11400000, guid: d114aa811a5c9c34f892b2e97c719d49, type: 2}
 --- !u!114 &1668552453
 MonoBehaviour:
   m_ObjectHideFlags: 0
