@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
     public State initialState;
-    private State currentState;
+    public State currentState;
+    public TMP_Text tMP;
+
     // Start is called before the first frame update
     void Start()
     {
         currentState = initialState;
+        currentState.UpdateStateText(tMP);
     }
 
     // Update is called once per frame
@@ -17,22 +21,18 @@ public class StateMachine : MonoBehaviour
     {
         State nextState = currentState.Run(gameObject);
 
-        if (nextState != null ) // si se devuelve algun tipo de informacion cambiamos de estado
+        if(nextState)
         {
             currentState = nextState;
+            currentState.UpdateStateText(tMP);
         }
     }
 
-    private void SwitchToNextState(State nextState)
+    private void OnDrawGizmos()
     {
-        currentState  = nextState;
-    }
-
-    public void OnDrawGizmos()
-    {
-        if (currentState)
-            currentState.DrawnAllActionsGizmos(gameObject);
-        else if (initialState)
-            initialState.DrawnAllActionsGizmos(gameObject);
+        if(currentState)
+            currentState.DrawAllActionsGizmos(gameObject);
+        else if(initialState)
+            initialState.DrawAllActionsGizmos(gameObject);
     }
 }
